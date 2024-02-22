@@ -9,6 +9,7 @@ func _ready():
 	input_manager = InputManager.new()
 	input_manager.jumped.connect(_on_jumped)
 	add_child(input_manager)
+	add_to_group("player")
 
 func _on_jumped() -> void:
 	# Jump with a maximum velocity of jump_strength
