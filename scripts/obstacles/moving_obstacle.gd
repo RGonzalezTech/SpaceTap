@@ -22,6 +22,6 @@ func _move_obstacle(delta: float) -> void:
 
 ## This function is called when the obstacle collides with another body.
 ## You can overwrite this function to add custom behavior when the obstacle collides with another body.
-func _handle_collision(body: Node) -> void:
+func _handle_collision(body: CollisionObject2D) -> void:
 	if(body.is_in_group("player")):
 		obstacle_failed.emit()
