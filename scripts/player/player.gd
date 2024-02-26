@@ -4,12 +4,15 @@ extends RigidBody2D
 signal died(obstacle: BaseObstacle)
 
 @export var jump_strength : int = 600
+@export var score_ui : ScoreUI
 
 var input_manager : InputManager
+var score : int = 0
 
 func add_points(points: int) -> void:
-	# Add points to the player's score
-	print("Player got " + str(points) + " points")
+	score += points
+	if(score_ui):
+		score_ui.set_score(score)
 
 func _ready():
 	_subscribe_to_inputs()

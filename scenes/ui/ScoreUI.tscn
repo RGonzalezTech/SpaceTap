@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://yxrs7htacyi1"]
+
+[ext_resource type="Script" path="res://scripts/ui/score_ui.gd" id="1_tl3i6"]
+
+[node name="ScoreUI" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl3i6")
+label = NodePath("PlayerScoreCanvas/ScoreLabel")
+
+[node name="PlayerScoreCanvas" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ScoreLabel" type="Label" parent="PlayerScoreCanvas"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
