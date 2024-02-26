@@ -8,6 +8,7 @@ signal obstacle_passed
 ## When the obstacle has been spawned and has moved sufficiently into the screen to be visible and allow room for another obstacle to be spawned
 signal obstacle_spawned
 
+## The name of this obstacle. Useful for debugging and UI purposes.
 @export var obstacle_name : String = "BaseObstacle"
 ## The value of this obstacle when passed
 @export var points : int = 1
