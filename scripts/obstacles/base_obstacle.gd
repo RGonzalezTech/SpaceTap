@@ -16,3 +16,6 @@ signal obstacle_spawned
 ## Whether this obstacle contains any following obstacles
 func has_following_obstacles() -> bool:
 	return following_obstacles.size() > 0
+
+func _ready():
+	pass
