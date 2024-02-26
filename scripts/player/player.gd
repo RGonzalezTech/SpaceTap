@@ -10,7 +10,6 @@ var input_manager : InputManager
 func _ready():
 	_subscribe_to_inputs()
 	_subscribe_to_physics()
-	add_to_group("player") # Always add the player to the "player" group
 
 # Private methods
 func _subscribe_to_inputs() -> void:
