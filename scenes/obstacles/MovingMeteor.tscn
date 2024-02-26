@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqt46q61uyt5p"]
+[gd_scene load_steps=6 format=3 uid="uid://bqt46q61uyt5p"]
 
 [ext_resource type="Script" path="res://scripts/obstacles/moving_obstacle.gd" id="1_cdrpe"]
 [ext_resource type="Texture2D" uid="uid://d0yfcm4vqega5" path="res://assets/images/meteorBrown_big1.png" id="2_mvtby"]
+[ext_resource type="Script" path="res://scripts/obstacles/point_trigger.gd" id="3_h3xmq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nghya"]
 radius = 52.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_onxoa"]
+a = Vector2(0, -1000)
+b = Vector2(0, 1000)
 
 [node name="MeteorRoot" type="CharacterBody2D"]
 script = ExtResource("1_cdrpe")
@@ -14,3 +19,10 @@ shape = SubResource("CircleShape2D_nghya")
 
 [node name="MeteorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_mvtby")
+
+[node name="PointTrigger" type="Area2D" parent="."]
+script = ExtResource("3_h3xmq")
+
+[node name="LineShape" type="CollisionShape2D" parent="PointTrigger"]
+position = Vector2(0, -1)
+shape = SubResource("SegmentShape2D_onxoa")

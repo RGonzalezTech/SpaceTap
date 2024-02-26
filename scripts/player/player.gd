@@ -7,6 +7,10 @@ signal died(obstacle: BaseObstacle)
 
 var input_manager : InputManager
 
+func add_points(points: int) -> void:
+	# Add points to the player's score
+	print("Player got " + str(points) + " points")
+
 func _ready():
 	_subscribe_to_inputs()
 	_subscribe_to_physics()
