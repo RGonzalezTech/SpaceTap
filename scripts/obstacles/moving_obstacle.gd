@@ -10,7 +10,7 @@ extends BaseObstacle
 ## The direction in which the obstacle moves
 @export var direction : Vector2 = Vector2.LEFT
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	_move_obstacle(delta)
 
 ## This function moves the obstacle in the direction specified by the `direction` variable.
