@@ -27,10 +27,10 @@ func _move_obstacle(delta: float) -> void:
 
 func _on_tail_enter(area: Area2D) -> void:
 	if area is LevelBoundary:
-		print("Tail entered level boundary")
+		# Tail has cleared the runway
 		obstacle_spawned.emit()
 
 func _on_tail_exit(area: Area2D) -> void:
 	if area is LevelBoundary:
-		print("Tail exited level boundary")
+		# Tail has cleared the level/screen
 		obstacle_passed.emit()
