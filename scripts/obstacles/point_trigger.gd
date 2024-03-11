@@ -1,21 +1,22 @@
 class_name PointTrigger
 extends Area2D
 
-## This class is used to create a trigger that the player can claim by walking into it.
+## This class is used to create an area that the player can claim by walking through it.
 
+## This signal is emitted when the value is claimed.
 signal claimed
 
-@export var points : int = 1
+## This value will be given to the player when they claim the trigger.
+@export var value : int = 1
 
 var _claimed = false
 
-## This function can be called on the trigger to claim it. 
-## If the trigger has not been claimed, it will return the points and set the trigger as claimed.
+## If the trigger has been claimed before, it returns 0. Otherwise, it returns the value of the trigger.
 func claim() -> int:
 	if not _claimed:
 		_claimed = true
 		claimed.emit()
-		return points
+		return value
 	return 0
 
 ## This function can be called to check if the trigger has been claimed.
@@ -26,9 +27,10 @@ func _ready():
 	body_exited.connect(_on_body_exit)
 
 func _on_body_exit(body: Node) -> void:
+	# Only players can claim the trigger
 	if not body is Player:
 		return
 
-	var earned_points = claim()
-	if earned_points > 0:
-		(body as Player).add_points(earned_points)
+	# Increase their score (if it has not been claimed already)
+	var claimed_points = claim()
+	(body as Player).add_points(claimed_points)
