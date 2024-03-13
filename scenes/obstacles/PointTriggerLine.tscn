@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw3gc6igedepm"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/point_trigger.gd" id="1_5iokt"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_a1lje"]
+a = Vector2(0, -1000)
+b = Vector2(0, 1000)
+
+[node name="PointLineArea" type="Area2D"]
+script = ExtResource("1_5iokt")
+
+[node name="PointLineShape" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_a1lje")

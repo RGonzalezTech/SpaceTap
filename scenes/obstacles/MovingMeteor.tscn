@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqt46q61uyt5p"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/moving_obstacle.gd" id="1_cdrpe"]
+[ext_resource type="Texture2D" uid="uid://d0yfcm4vqega5" path="res://assets/images/meteorBrown_big1.png" id="2_mvtby"]
+[ext_resource type="PackedScene" uid="uid://dw3gc6igedepm" path="res://scenes/obstacles/PointTriggerLine.tscn" id="3_50xg1"]
+[ext_resource type="PackedScene" uid="uid://dpo57ut3v64c6" path="res://scenes/obstacles/LineArea.tscn" id="4_e10ac"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nghya"]
+radius = 52.0
+
+[node name="MeteorRoot" type="CharacterBody2D" node_paths=PackedStringArray("tail_area")]
+script = ExtResource("1_cdrpe")
+tail_area = NodePath("TailLine")
+
+[node name="MeteorCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nghya")
+
+[node name="MeteorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_mvtby")
+
+[node name="PointLine" parent="." instance=ExtResource("3_50xg1")]
+position = Vector2(51, 0)
+
+[node name="TailLine" parent="." instance=ExtResource("4_e10ac")]
+position = Vector2(100, 0)
