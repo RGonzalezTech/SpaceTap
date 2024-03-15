@@ -1,6 +1,11 @@
 class_name BaseUI
 extends Control
 
+## This is a base class for all future UI elements. 
+## It contains some common functionality that will be applicable in many UI elements.
+
+## This function accepts a number and returns a string with commas separating every three digits.
+## For example, 1234567 would be formatted as "1,234,567".
 func format_number_with_commas(number: int) -> String:
 	var num_str := str(number) # Convert the number to string
 	var formatted_str := "" # Initialize the resulting string
