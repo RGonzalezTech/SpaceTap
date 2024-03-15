@@ -9,6 +9,9 @@ var _score: int = 0
 ## When the score changes, this signal is emitted.
 signal score_changed(score: int)
 
+func get_score() -> int:
+    return _score
+
 ## Increases the score by the given amount.
 ## It ignores values less than or equal to 0.
 func increase_score(amount: int) -> void:
