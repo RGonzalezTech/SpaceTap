@@ -1,0 +1,36 @@
+name: Build Project
+
+on: push
+
+env:
+  GODOT_VERSION: 4.1
+  EXPORT_NAME: SpaceTap
+  PROJECT_PATH: ./
+
+jobs:
+  export:
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup Godot
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Setup Export Config
+        run: |
+          cp copy.export_presets.cfg export_presets.cfg
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot --headless --verbose --export-release "Itch.io Web Build" ./build/web/$EXPORT_NAME.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: build/web
