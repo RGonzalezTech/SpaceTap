@@ -2,6 +2,7 @@
 .godot/
 
 # Build files
+export_presets.cfg
 build/
 
 # GUT editor
