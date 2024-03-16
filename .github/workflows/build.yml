@@ -34,3 +34,22 @@ jobs:
         with:
           name: web
           path: build/web
+
+  deploy:
+    name: Deploy to Itch.io
+    runs-on: ubuntu-20.04
+    needs: export
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+          path: build/web
+      - name: Upload to Itch.io
+        uses: manleydev/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: html
+          ITCH_GAME: spacetap
+          ITCH_USER: rgonzaleztech
+          PACKAGE: build/web
