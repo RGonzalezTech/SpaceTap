@@ -15,6 +15,10 @@ run/main_scene="res://scenes/levels/PlaceholderScene.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DebugUi="*res://scenes/autoload/debug/DebugUI.tscn"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")

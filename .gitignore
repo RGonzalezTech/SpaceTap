@@ -4,6 +4,7 @@
 # Build files
 export_presets.cfg
 build/
+VERSION.txt
 
 # GUT editor
 .gut_editor_config.json
