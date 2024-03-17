@@ -61,7 +61,7 @@ class TestPhysics:
 		add_child_autofree(obstacle)
 
 		assert_signal_not_emitted(player, "died")
-		player.body_entered.emit(obstacle)
+		player.die(obstacle)
 		assert_signal_emitted(player, "died")
 
 	func test_does_not_emit_died_on_touching_other():
