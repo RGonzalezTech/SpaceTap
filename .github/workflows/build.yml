@@ -1,6 +1,8 @@
 name: Build Project
 
-on: push
+on:
+  release:
+    types: [published]
 
 env:
   GODOT_VERSION: 4.1
@@ -25,6 +27,7 @@ jobs:
       - name: Setup Export Config
         run: |
           cp copy.export_presets.cfg export_presets.cfg
+          echo "${{ github.ref_name }}" > VERSION.txt
       - name: Web Build
         run: |
           mkdir -v -p build/web
@@ -49,6 +52,7 @@ jobs:
         uses: manleydev/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          VERSION: ${{ github.ref_name }}
           CHANNEL: html
           ITCH_GAME: spacetap
           ITCH_USER: rgonzaleztech
