@@ -25,13 +25,17 @@ var input_manager : InputManager
 ## This object is created on ready.
 var score_manager : ScoreManager
 
+## This function is called by the Obstacle when it collides with the player.
+## It emits the "died" signal with the obstacle that was passed as an argument.
+func die(obstacle: BaseObstacle) -> void:
+	died.emit(obstacle)
+
 ## This function will pass the points to the [ScoreManager] to increase the score
 func add_points(points: int) -> void:
 	score_manager.increase_score(points)
 
 func _ready():
 	_subscribe_to_inputs()
-	_subscribe_to_physics()
 	_subscribe_to_score()
 
 # Private methods
@@ -47,19 +51,9 @@ func _subscribe_to_score() -> void:
 		score_manager.score_changed.connect(score_ui.set_score)
 	add_child(score_manager)
 
-func _subscribe_to_physics() -> void:
-	self.max_contacts_reported = 1
-	self.contact_monitor = true
-	self.body_entered.connect(_on_body_entered)
-
 # Listeners
 # This function is called when the player's input manager emits the "jumped" signal.
 # It sets the player's y velocity to the jump_strength
 func _on_jumped() -> void:
 	# Negative y velocity to jump "up"
 	self.linear_velocity.y = jump_strength * -1
-
-# This function is called when the player touches a physics body. If the body is an obstacle, the player dies
-func _on_body_entered(body: Node) -> void:
-	if body is BaseObstacle:
-		died.emit(body)

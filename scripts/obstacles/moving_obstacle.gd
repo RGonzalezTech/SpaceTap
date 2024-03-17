@@ -23,7 +23,12 @@ func _physics_process(delta: float):
 ## This function moves the obstacle in the direction specified by the `direction` variable.
 ## You can overwrite this function to add custom behavior to the obstacle's movement.
 func _move_obstacle(delta: float) -> void:
-	var _collision = move_and_collide(direction * speed * delta)
+	var collision = move_and_collide(direction * speed * delta)
+	if !collision:
+		return
+	var obj = collision.get_collider()
+	if obj is Player:
+		(obj as Player).die(self)
 
 func _on_tail_enter(area: Area2D) -> void:
 	if area is LevelBoundary:
