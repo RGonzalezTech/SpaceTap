@@ -1,0 +1,59 @@
+name: Build Project
+
+on:
+  release:
+    types: [published]
+
+env:
+  GODOT_VERSION: 4.1
+  EXPORT_NAME: index
+  PROJECT_PATH: ./
+
+jobs:
+  export:
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup Godot
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Setup Export Config
+        run: |
+          cp copy.export_presets.cfg export_presets.cfg
+          echo "${{ github.ref_name }}" > VERSION.txt
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot --headless --verbose --export-release "Itch.io Web Build" ./build/web/$EXPORT_NAME.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: build/web
+
+  deploy:
+    name: Deploy to Itch.io
+    runs-on: ubuntu-20.04
+    needs: export
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+          path: build/web
+      - name: Upload to Itch.io
+        uses: manleydev/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          VERSION: ${{ github.ref_name }}
+          CHANNEL: html
+          ITCH_GAME: spacetap
+          ITCH_USER: rgonzaleztech
+          PACKAGE: build/web
