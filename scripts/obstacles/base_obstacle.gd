@@ -10,3 +10,6 @@ signal obstacle_spawned
 
 ## The name of this obstacle. Useful for debugging and UI purposes.
 @export var obstacle_name : String = "BaseObstacle"
+
+func _ready():
+	pass
