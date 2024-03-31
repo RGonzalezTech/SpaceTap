@@ -10,12 +10,3 @@ signal obstacle_spawned
 
 ## The name of this obstacle. Useful for debugging and UI purposes.
 @export var obstacle_name : String = "BaseObstacle"
-## Obstacle scenes that can be spawned after this one (to keep the randomization interesting and fair)
-@export var following_obstacles : Array[PackedScene] = []
-
-## Whether this obstacle contains any following obstacles
-func has_following_obstacles() -> bool:
-	return following_obstacles.size() > 0
-
-func _ready():
-	pass
