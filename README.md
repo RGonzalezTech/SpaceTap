@@ -4,6 +4,10 @@ An Open-Source game template for the [Godot Engine](https://godotengine.org/). T
 
 > Pending screenshot after polishing the game template.
 
+## Playable Demo
+
+You can play the latest version of the game template on [Itch.io](https://rgonzaleztech.itch.io/space-tap). The demo is updated with every published release.
+
 ## Features
 
 ### Player
@@ -112,3 +116,8 @@ sequenceDiagram
 - [Godot Engine 4.1](https://godotengine.org/download)
 - [Git LFS](https://git-lfs.github.com/)
 
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details. In short, check out the [issues](https://github.com/RGonzalezTech/SpaceTap/issues) and see if there's anything you can help with. If you have an idea for a new feature, please open an issue to discuss it first.
+
+For high-level planning, please see the [Projects](https://github.com/RGonzalezTech/SpaceTap/projects?query=is%3Aopen) tab. That will give you an idea of what's being worked on and what's coming up.
