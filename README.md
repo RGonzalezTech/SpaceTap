@@ -6,7 +6,7 @@ An Open-Source game template for the [Godot Engine](https://godotengine.org/). T
 
 ## Playable Demo
 
-You can play the latest version of the game template on [Itch.io](https://rgonzaleztech.itch.io/space-tap). The demo is updated with every published release.
+You can play the latest version of the game template on [Itch.io](https://rgonzaleztech.itch.io/spacetap). The demo is updated with every published release.
 
 ## Features
 
