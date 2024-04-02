@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_1wvo7"]
 [ext_resource type="PackedScene" uid="uid://cbo0qhc8xyn3p" path="res://scenes/PlayerShip.tscn" id="2_q1kov"]
 [ext_resource type="Script" path="res://scripts/levels/level_boundary.gd" id="3_1jui5"]
-[ext_resource type="Script" path="res://scripts/levels/obstacle_spawn_manager.gd" id="4_6eh7h"]
+[ext_resource type="Script" path="res://scripts/levels/repeat_obstacle_spawner.gd" id="4_8dw08"]
 [ext_resource type="PackedScene" uid="uid://bqt46q61uyt5p" path="res://scenes/obstacles/MovingMeteor.tscn" id="5_ux30p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijj1v"]
@@ -27,7 +27,7 @@ position = Vector2(275, 167)
 position = Vector2(1200, 325)
 gizmo_extents = 100.0
 
-[node name="ObstacleSpawnManager" type="Node" parent="." node_paths=PackedStringArray("spawn_position")]
-script = ExtResource("4_6eh7h")
+[node name="RepeatObstacleSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("4_8dw08")
 spawn_element = ExtResource("5_ux30p")
 spawn_position = NodePath("../SpawnPos")

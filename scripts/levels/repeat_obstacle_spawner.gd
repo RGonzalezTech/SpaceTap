@@ -1,5 +1,5 @@
-class_name ObstacleSpawnManager
-extends Node
+class_name RepeatObstacleSpawner
+extends BaseObstacleSpawner
 
 ## This node is responsible for spawning an obstacle scene in the game.
 ## It relies on a [ObstacleMonitor] to determine when to spawn the next obstacle.
@@ -10,20 +10,10 @@ extends Node
 ## This property determines the position to spawn the obstacle.
 @export var spawn_position : Marker2D
 
-## The obstacle monitor created on _ready. It is responsible for emitting signals to 
-## spawn more obstacles and clean up obstacles.
-var obstacle_monitor : ObstacleMonitor
-
 # On ready, spawn the first obstacle
 func _ready():
-	_setup_spawn_timer()
+	super()
 	spawn_next_obstacle()
-
-func _setup_spawn_timer() -> void:
-	obstacle_monitor = ObstacleMonitor.new()
-	obstacle_monitor.spawn_next.connect(spawn_next_obstacle)
-	obstacle_monitor.clean_up.connect(_on_cleanup)
-	add_child(obstacle_monitor)
 
 ## This function will spawn an obstacle, position it, and subscribe to it
 ## When the obstacle is fully spawned, it will spawn the next one.
@@ -34,14 +24,11 @@ func spawn_next_obstacle() -> void:
 
 # === Private functions ===
 
-func _on_cleanup(obstacle: BaseObstacle) -> void:
-	obstacle.queue_free()
-
 func _init_obstacle() -> BaseObstacle:
 	var obstacle = spawn_element.instantiate()
 	assert(obstacle is BaseObstacle, "Spawned obstacle is not a BaseObstacle")
 
-	obstacle_monitor.subscribe(obstacle)
+	self.obstacle_monitor.subscribe(obstacle)
 	return obstacle
 
 func _place_obstacle(obstacle: BaseObstacle) -> void:
