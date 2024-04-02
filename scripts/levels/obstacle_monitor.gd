@@ -1,4 +1,4 @@
-class_name SpawnTimeManager
+class_name ObstacleMonitor
 extends Node
 
 ## This node is responsible for listening to obstacles and emitting a signal
