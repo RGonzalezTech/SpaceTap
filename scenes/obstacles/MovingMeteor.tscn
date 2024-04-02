@@ -9,6 +9,7 @@
 radius = 52.0
 
 [node name="MeteorRoot" type="CharacterBody2D" node_paths=PackedStringArray("tail_area")]
+position = Vector2(50, 0)
 script = ExtResource("1_cdrpe")
 tail_area = NodePath("TailLine")
 
