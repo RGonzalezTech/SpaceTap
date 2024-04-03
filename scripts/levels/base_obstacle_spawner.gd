@@ -16,6 +16,10 @@ func _setup_obstacle_monitor() -> void:
 	obstacle_monitor.clean_up.connect(on_cleanup)
 	add_child(obstacle_monitor)
 
+## Called when the game starts.
+func start() -> void:
+	assert(false, "start must be implemented by the subclass")
+
 ## Called when the [ObstacleMonitor] emits the spawn_next signal.
 ## This method should be implemented by the subclass to spawn
 ## new obstacles.

@@ -9,9 +9,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijj1v"]
 size = Vector2(1152, 650)
 
-[node name="SimpleInfiniteLevel" type="Node2D" node_paths=PackedStringArray("boundary")]
+[node name="SimpleInfiniteLevel" type="Node2D" node_paths=PackedStringArray("boundary", "spawner")]
 script = ExtResource("1_1wvo7")
 boundary = NodePath("LevelBoundary")
+spawner = NodePath("RepeatObstacleSpawner")
 
 [node name="LevelBoundary" type="Area2D" parent="."]
 script = ExtResource("3_1jui5")

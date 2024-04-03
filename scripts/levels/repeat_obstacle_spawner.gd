@@ -10,9 +10,8 @@ extends BaseObstacleSpawner
 ## This property determines the position to spawn the obstacle.
 @export var spawn_position : Marker2D
 
-# On ready, spawn the first obstacle
-func _ready():
-	super()
+## Spawns the first obstacle and subscribes to it.
+func start() -> void:
 	spawn_next_obstacle()
 
 ## This function will spawn an obstacle, position it, and subscribe to it
