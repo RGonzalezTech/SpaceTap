@@ -26,6 +26,12 @@ func start() -> void:
 func spawn_next_obstacle() -> void:
 	assert(false, "spawn_next_obstacle must be implemented by the subclass")
 
+## This function will try to get the root [Level] node of the scene.
+## Then, it will add the obstacle as a child to the level.
+func place_in_level(obstacle: BaseObstacle) -> void:
+	var level_root = Level.get_object_level(self)
+	level_root.add_child.call_deferred(obstacle)
+
 ## Called when the [ObstacleMonitor] emits the clean_up signal.
 ## This method queues the obstacle for removal by default.
 func on_cleanup(obstacle: BaseObstacle) -> void:

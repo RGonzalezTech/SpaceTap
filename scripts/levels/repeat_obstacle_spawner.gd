@@ -33,5 +33,4 @@ func _init_obstacle() -> BaseObstacle:
 func _place_obstacle(obstacle: BaseObstacle) -> void:
 	if(spawn_position):
 		obstacle.global_position = spawn_position.global_position
-	var level_root = Level.get_object_level(self)
-	level_root.add_child.call_deferred(obstacle)
+	place_in_level(obstacle)
