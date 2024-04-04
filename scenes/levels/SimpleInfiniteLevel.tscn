@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxfqyjbmdjw"]
+
+[ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_1wvo7"]
+[ext_resource type="PackedScene" uid="uid://cbo0qhc8xyn3p" path="res://scenes/PlayerShip.tscn" id="2_q1kov"]
+[ext_resource type="Script" path="res://scripts/levels/level_boundary.gd" id="3_1jui5"]
+[ext_resource type="Script" path="res://scripts/levels/repeat_vertical_scatter_spawner.gd" id="4_4oy4c"]
+[ext_resource type="PackedScene" uid="uid://bqt46q61uyt5p" path="res://scenes/obstacles/MovingMeteor.tscn" id="5_ux30p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijj1v"]
+size = Vector2(1152, 650)
+
+[node name="SimpleInfiniteLevel" type="Node2D" node_paths=PackedStringArray("boundary", "spawner")]
+script = ExtResource("1_1wvo7")
+boundary = NodePath("LevelBoundary")
+spawner = NodePath("RepeatVerticalScatterSpawner")
+
+[node name="LevelBoundary" type="Area2D" parent="."]
+script = ExtResource("3_1jui5")
+
+[node name="LevelShape" type="CollisionShape2D" parent="LevelBoundary"]
+position = Vector2(576, 324.75)
+shape = SubResource("RectangleShape2D_ijj1v")
+
+[node name="PlayerShipRoot" parent="." instance=ExtResource("2_q1kov")]
+position = Vector2(275, 167)
+
+[node name="SpawnPos" type="Marker2D" parent="."]
+position = Vector2(1200, 325)
+gizmo_extents = 100.0
+
+[node name="RepeatVerticalScatterSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("4_4oy4c")
+spawn_element = ExtResource("5_ux30p")
+spawn_position = NodePath("../SpawnPos")

@@ -9,7 +9,9 @@
 radius = 52.0
 
 [node name="MeteorRoot" type="CharacterBody2D" node_paths=PackedStringArray("tail_area")]
+position = Vector2(50, 0)
 script = ExtResource("1_cdrpe")
+speed = 500.0
 tail_area = NodePath("TailLine")
 
 [node name="MeteorCollider" type="CollisionShape2D" parent="."]
@@ -22,4 +24,4 @@ texture = ExtResource("2_mvtby")
 position = Vector2(51, 0)
 
 [node name="TailLine" parent="." instance=ExtResource("4_e10ac")]
-position = Vector2(100, 0)
+position = Vector2(300, 0)
