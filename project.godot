@@ -11,14 +11,20 @@ config_version=5
 [application]
 
 config/name="Space Tap"
-run/main_scene="res://scenes/levels/SimpleInfiniteLevel.tscn"
+run/main_scene="res://scenes/GameInit.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 DebugUi="*res://scenes/autoload/debug/DebugUI.tscn"
 GameStateManager="*res://scripts/gamestate/game_state_manager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
