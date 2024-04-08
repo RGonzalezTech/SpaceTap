@@ -29,8 +29,10 @@ func spawn_next_obstacle() -> void:
 ## This function will try to get the root [Level] node of the scene.
 ## Then, it will add the obstacle as a child to the level.
 func place_in_level(obstacle: BaseObstacle) -> void:
-	var level_root = Level.get_object_level(self)
-	level_root.add_child.call_deferred(obstacle)
+	if(GameStateManager.is_level_active()):
+		GameStateManager.active_level.add_child.call_deferred(obstacle)
+	else:
+		assert(false, "No active level was found")
 
 ## Called when the [ObstacleMonitor] emits the clean_up signal.
 ## This method queues the obstacle for removal by default.
