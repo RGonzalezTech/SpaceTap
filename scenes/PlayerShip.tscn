@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c1iix6cikga5k" path="res://assets/images/playerShip3_red.png" id="1_f5d1k"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_pw78o"]
-[ext_resource type="PackedScene" uid="uid://yxrs7htacyi1" path="res://scenes/ui/ScoreUI.tscn" id="3_thebm"]
+[ext_resource type="PackedScene" uid="uid://yxrs7htacyi1" path="res://scenes/ui/player/ScoreUI.tscn" id="3_thebm"]
 
 [node name="PlayerShipRoot" type="RigidBody2D" node_paths=PackedStringArray("score_ui")]
 lock_rotation = true
