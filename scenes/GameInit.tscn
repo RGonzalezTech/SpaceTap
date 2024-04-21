@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://ktohkenuqkdb"]
 
 [ext_resource type="Script" path="res://scripts/gamestate/game_init.gd" id="1_v30wp"]
-[ext_resource type="PackedScene" uid="uid://cxfqyjbmdjw" path="res://scenes/levels/SimpleInfiniteLevel.tscn" id="2_3k4qr"]
+[ext_resource type="PackedScene" uid="uid://cwdvp7y3le6qs" path="res://scenes/ui/menu/MainMenu.tscn" id="2_aesnj"]
 [ext_resource type="Script" path="res://scripts/ui/splash_screen/splash_screen_manager.gd" id="2_gnoje"]
 [ext_resource type="PackedScene" uid="uid://loas1sa1hx2h" path="res://scenes/splash_screens/MadeWithOpenSource.tscn" id="3_wudsa"]
 
 [node name="GameInit" type="Node" node_paths=PackedStringArray("splash_manager")]
 script = ExtResource("1_v30wp")
 splash_manager = NodePath("SplashScreenManager")
-main_menu = ExtResource("2_3k4qr")
+main_menu = ExtResource("2_aesnj")
 
 [node name="SplashScreenManager" type="Node" parent="."]
 script = ExtResource("2_gnoje")
