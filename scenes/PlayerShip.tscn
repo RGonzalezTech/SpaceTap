@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbo0qhc8xyn3p"]
+[gd_scene load_steps=5 format=3 uid="uid://cbo0qhc8xyn3p"]
 
 [ext_resource type="Texture2D" uid="uid://c1iix6cikga5k" path="res://assets/images/playerShip3_red.png" id="1_f5d1k"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_pw78o"]
 [ext_resource type="PackedScene" uid="uid://yxrs7htacyi1" path="res://scenes/ui/player/ScoreUI.tscn" id="3_thebm"]
+[ext_resource type="PackedScene" uid="uid://1f0k130qe6tc" path="res://scenes/ui/player/PauseUI.tscn" id="4_nk0hy"]
 
-[node name="PlayerShipRoot" type="RigidBody2D" node_paths=PackedStringArray("score_ui")]
+[node name="PlayerShipRoot" type="RigidBody2D" node_paths=PackedStringArray("pause_ui", "score_ui")]
 lock_rotation = true
 script = ExtResource("1_pw78o")
+pause_ui = NodePath("PauseUI")
 score_ui = NodePath("ScoreUI")
 
 [node name="PlayerShipSprite" type="Sprite2D" parent="."]
@@ -17,3 +19,5 @@ texture = ExtResource("1_f5d1k")
 polygon = PackedVector2Array(37, -5, 37, 5, 23, 11, -22, 49, -29, 49, -30, 48, -30, 21, -38, 13, -38, -14, -30, -22, -30, -49, -21, -49, 23, -11)
 
 [node name="ScoreUI" parent="." instance=ExtResource("3_thebm")]
+
+[node name="PauseUI" parent="." instance=ExtResource("4_nk0hy")]
