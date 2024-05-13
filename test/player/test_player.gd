@@ -3,9 +3,25 @@ extends GutTest
 class BasePlayerTests:
 	extends GutTest
 	var player: Player
+	
+	var pause_ui : PauseUI
 
 	func before_each():
 		player = Player.new()
+		
+		# Prepare Pause UI
+		pause_ui = PauseUI.new()
+		pause_ui.popup = PopupPanel.new()
+		pause_ui.quit_btn = Button.new()
+		pause_ui.resume_btn = Button.new()
+		
+		pause_ui.add_child(pause_ui.popup)
+		pause_ui.add_child(pause_ui.quit_btn)
+		pause_ui.add_child(pause_ui.resume_btn)
+		
+		add_child_autofree(pause_ui)
+		player.pause_ui = pause_ui
+		
 		watch_signals(player)
 
 class TestScoreUI:
@@ -16,7 +32,7 @@ class TestScoreUI:
 
 	func before_each():
 		super()
-		# Prepare UI
+		# Prepare Score UI
 		score_ui = ScoreUI.new()
 		score_label = Label.new()
 		score_ui.add_child(score_label)
@@ -24,6 +40,7 @@ class TestScoreUI:
 		add_child_autofree(score_ui)
 
 		player.score_ui = score_ui
+
 		# Score Manager is created on ready
 		add_child_autofree(player)
 

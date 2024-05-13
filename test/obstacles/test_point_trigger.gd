@@ -43,10 +43,11 @@ class TestPlayerArea:
 	extends BasePointTriggerTest
 
 	var player : Player
-
+	
 	func before_each():
 		super()
-		player = Player.new()
+		var mock_player_scene = preload("res://scenes/__mocks__/MockPlayer.tscn")
+		player = mock_player_scene.instantiate()
 		add_child_autofree(player)
 
 	func test_player_exit_adds_points():
