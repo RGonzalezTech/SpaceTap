@@ -43,3 +43,10 @@ text = "Resume"
 [node name="QuitBtn" type="Button" parent="PauseLayer/PopupPanel/VBox"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Label" type="Label" parent="PauseLayer"]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 191.0
+offset_bottom = 58.0
+text = "Press \"ESC\" to Pause"
