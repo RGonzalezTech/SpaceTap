@@ -14,7 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run unit tests
-        uses: croconut/godot-tester@v5.1
+        uses: RGonzalezTech/godot-tester@rg/custom-godot-binary
         with:
           # required
           version: "4.1"
+          custom-godot-dl-url: "https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_linux.x86_64.zip"
+          custom-godot-binary-path: "Godot_v4.2.2-stable_linux.x86_64"
