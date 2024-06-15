@@ -1,6 +1,8 @@
 class_name Player
 extends RigidBody2D
 
+@export var pause_ui : PauseUI
+
 ## This class represents the player's character. It is responsible for responding to 
 ## input events and checking for collisions with obstacles. 
 ## It also expects a [ScoreUI] node to render the score
@@ -35,6 +37,10 @@ func add_points(points: int) -> void:
 	score_manager.increase_score(points)
 
 func _ready():
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	assert(pause_ui, "Player: 'pause_ui' is required")
+	
 	_subscribe_to_inputs()
 	_subscribe_to_score()
 
@@ -43,6 +49,7 @@ func _subscribe_to_inputs() -> void:
 	# User Inputs
 	input_manager = InputManager.new()
 	input_manager.jumped.connect(_on_jumped)
+	input_manager.cancel.connect(_on_cancel)
 	add_child(input_manager)
 
 func _subscribe_to_score() -> void:
@@ -55,5 +62,13 @@ func _subscribe_to_score() -> void:
 # This function is called when the player's input manager emits the "jumped" signal.
 # It sets the player's y velocity to the jump_strength
 func _on_jumped() -> void:
+	if(get_tree().paused):
+		return
+
 	# Negative y velocity to jump "up"
 	self.linear_velocity.y = jump_strength * -1
+
+# This function is called when the player's input manager emits the "cancel" signal.
+# This typically means that they player is toggling the pause menu.
+func _on_cancel() -> void:
+	pause_ui.pause_show()

@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://1f0k130qe6tc"]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_ui.gd" id="1_dm4xh"]
+
+[node name="PauseUI" type="Control" node_paths=PackedStringArray("resume_btn", "quit_btn", "popup")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dm4xh")
+resume_btn = NodePath("PauseLayer/PopupPanel/VBox/ResumeBtn")
+quit_btn = NodePath("PauseLayer/PopupPanel/VBox/QuitBtn")
+popup = NodePath("PauseLayer/PopupPanel")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="PopupPanel" type="PopupPanel" parent="PauseLayer"]
+title = "Game Paused"
+initial_position = 2
+size = Vector2i(133, 112)
+
+[node name="VBox" type="VBoxContainer" parent="PauseLayer/PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 129.0
+offset_bottom = 108.0
+
+[node name="PausedText" type="Label" parent="PauseLayer/PopupPanel/VBox"]
+layout_mode = 2
+text = "- Game Paused -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PauseLayer/PopupPanel/VBox"]
+layout_mode = 2
+
+[node name="ResumeBtn" type="Button" parent="PauseLayer/PopupPanel/VBox"]
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitBtn" type="Button" parent="PauseLayer/PopupPanel/VBox"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Label" type="Label" parent="PauseLayer"]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 191.0
+offset_bottom = 58.0
+text = "Press \"ESC\" to Pause"
