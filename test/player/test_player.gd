@@ -51,6 +51,20 @@ class TestScoreUI:
 		player.add_points(100)
 		assert_eq(score_label.text, "200")
 
+class TestPauseUI:
+	extends BasePlayerTests
+
+	func before_each():
+		super()
+		var mock_pause = double(PauseUI).new()
+		player.pause_ui = mock_pause
+		add_child_autofree(player)
+	
+	func test_pause_ui_is_shown_on_cancel():
+		assert_not_called(player.pause_ui, 'pause_show')
+		player.input_manager.cancel.emit()
+		assert_called(player.pause_ui, 'pause_show')
+
 class TestPhysics:
 	extends BasePlayerTests
 
@@ -72,6 +86,22 @@ class TestPhysics:
 			
 		# Check velocity (-Y = UP)
 		assert_eq(player.linear_velocity.y, strength * - 1.00)
+	
+	func test_does_not_jump_when_paused():
+		# Not moving
+		assert_eq(player.linear_velocity.y, 0.00)
+		# Pause
+		get_tree().paused = true
+		# Jump
+		player.input_manager.jumped.emit()
+		# Should not jump
+		assert_eq(player.linear_velocity.y, 0.00)
+		# Unpause
+		get_tree().paused = false
+		# Jump
+		player.input_manager.jumped.emit()
+		# Should jump
+		assert_ne(player.linear_velocity.y, 0.00)
 
 	func test_emits_died_on_touching_obstacle():
 		var obstacle = BaseObstacle.new()
