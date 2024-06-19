@@ -18,6 +18,13 @@ func go_main_menu() -> void:
 	tree_root.paused = false
 	tree_root.change_scene_to_packed(main_menu_scene)
 
+## Reloads the active scene if it is a [Level]
+func restart_level() -> void:
+	if(!active_level):
+		return
+
+	get_tree().reload_current_scene()
+
 func quit_graceful():
 	# TODO: handle saving game state
 	quit_immediate()
