@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=3 uid="uid://33exvak56ypb"]
+
+[ext_resource type="Script" path="res://scripts/ui/gameover_ui.gd" id="1_uubnv"]
+
+[node name="GameOverUI" type="Control" node_paths=PackedStringArray("panel", "obstacle_name_label", "score_label", "quit_btn", "restart_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uubnv")
+panel = NodePath("GameOverCanvas/GameOverPanel")
+obstacle_name_label = NodePath("GameOverCanvas/GameOverPanel/GameOverOptionsContainer/KilledByContainer/GameOverObstacleName")
+score_label = NodePath("GameOverCanvas/GameOverPanel/GameOverOptionsContainer/ScoreContainer/ScoreAmountText")
+quit_btn = NodePath("GameOverCanvas/GameOverPanel/GameOverOptionsContainer/QuitBtn")
+restart_btn = NodePath("GameOverCanvas/GameOverPanel/GameOverOptionsContainer/RestartBtn")
+
+[node name="GameOverCanvas" type="CanvasLayer" parent="."]
+
+[node name="GameOverPanel" type="Panel" parent="GameOverCanvas"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -107.5
+offset_right = 138.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverOptionsContainer" type="VBoxContainer" parent="GameOverCanvas/GameOverPanel"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -48.0
+offset_right = 51.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverTitle" type="Label" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer"]
+layout_mode = 2
+text = "- You Died! -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KilledByContainer" type="HBoxContainer" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GameOverBumpedText" type="Label" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer/KilledByContainer"]
+layout_mode = 2
+text = "Bumped into"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverObstacleName" type="Label" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer/KilledByContainer"]
+layout_mode = 2
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreContainer" type="HBoxContainer" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ScoreLabelText" type="Label" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer/ScoreContainer"]
+layout_mode = 2
+text = "Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreAmountText" type="Label" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer/ScoreContainer"]
+layout_mode = 2
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="--- GAP ---" type="Control" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="RestartBtn" type="Button" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Try Again"
+
+[node name="QuitBtn" type="Button" parent="GameOverCanvas/GameOverPanel/GameOverOptionsContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Quit"

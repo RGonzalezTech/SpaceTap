@@ -11,7 +11,9 @@ extends Node2D
 
 func _ready():
 	assert(boundary, "LevelBoundary not found")
+	GameStateManager.reset_environment()
 	GameStateManager.active_level = self
+	GameStateManager.current_state = GameStateManagerCode.GameState.PLAYING
 
 	if(spawner):
 		spawner.start()
