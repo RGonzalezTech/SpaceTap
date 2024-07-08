@@ -5,23 +5,19 @@ class BasePlayerTests:
 	var player: Player
 	
 	var pause_ui : PauseUI
+	var game_over_ui : GameOverUI
 
 	func before_each():
 		player = Player.new()
 		
 		# Prepare Pause UI
-		pause_ui = PauseUI.new()
-		pause_ui.popup = PopupPanel.new()
-		pause_ui.quit_btn = Button.new()
-		pause_ui.resume_btn = Button.new()
-		
-		pause_ui.add_child(pause_ui.popup)
-		pause_ui.add_child(pause_ui.quit_btn)
-		pause_ui.add_child(pause_ui.resume_btn)
-		
-		add_child_autofree(pause_ui)
+		pause_ui = double(PauseUI).new()
 		player.pause_ui = pause_ui
-		
+
+		# Prepare GameOverUI
+		game_over_ui = double(GameOverUI).new()
+		player.game_over_ui = game_over_ui
+
 		watch_signals(player)
 
 class TestScoreUI:
@@ -56,14 +52,27 @@ class TestPauseUI:
 
 	func before_each():
 		super()
-		var mock_pause = double(PauseUI).new()
-		player.pause_ui = mock_pause
 		add_child_autofree(player)
 	
 	func test_pause_ui_is_shown_on_cancel():
 		assert_not_called(player.pause_ui, 'pause_show')
 		player.input_manager.cancel.emit()
 		assert_called(player.pause_ui, 'pause_show')
+
+class TestGameOverUI:
+	extends BasePlayerTests
+
+	func before_each():
+		super()
+		add_child_autofree(player)
+	
+	func test_game_over_ui_is_shown_on_die():
+		assert_not_called(player.game_over_ui, 'show_game_over')
+		var obstacle = BaseObstacle.new()
+		add_child_autofree(obstacle)
+
+		player.die(obstacle)
+		assert_called(player.game_over_ui, 'show_game_over')
 
 class TestPhysics:
 	extends BasePlayerTests

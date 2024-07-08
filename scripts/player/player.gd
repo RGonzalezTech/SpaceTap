@@ -2,6 +2,7 @@ class_name Player
 extends RigidBody2D
 
 @export var pause_ui : PauseUI
+@export var game_over_ui : GameOverUI
 
 ## This class represents the player's character. It is responsible for responding to 
 ## input events and checking for collisions with obstacles. 
@@ -31,6 +32,7 @@ var score_manager : ScoreManager
 ## It emits the "died" signal with the obstacle that was passed as an argument.
 func die(obstacle: BaseObstacle) -> void:
 	died.emit(obstacle)
+	game_over_ui.show_game_over(obstacle, score_manager.get_score())
 
 ## This function will pass the points to the [ScoreManager] to increase the score
 func add_points(points: int) -> void:
@@ -40,6 +42,7 @@ func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	assert(pause_ui, "Player: 'pause_ui' is required")
+	assert(game_over_ui, "Player: 'game_over_ui' is required")
 	
 	_subscribe_to_inputs()
 	_subscribe_to_score()

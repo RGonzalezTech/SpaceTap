@@ -6,6 +6,11 @@ extends BaseUI
 @export var popup : PopupPanel
 
 func pause_show():
+	# Only try to pause if the player is 
+	# actively playing a level
+	if(GameStateManager.current_state != GameStateManagerCode.GameState.PLAYING):
+		return
+	
 	get_tree().paused = true
 	popup.popup()
 
