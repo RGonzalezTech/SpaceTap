@@ -9,6 +9,7 @@ func _ready():
 	super()
 	self.load_save()
 
+## This function prepares an array of dictionaries, then saves to disk.
 func write_save() -> void:
 	if(self.leaderboard.size() == 0):
 		print("[LeaderboardManager] No data to save.")
@@ -21,6 +22,7 @@ func write_save() -> void:
 	pass
 	self.push_data(data_array)
 
+## This function pulls array data from the file and loads it into the leaderboard array.
 func load_save() -> void:
 	var data = self.pull_data()
 	if(data == null):
@@ -46,6 +48,7 @@ class LeaderboardEntry extends BaseSerializable.BaseDTO:
 		self.score = inputScore
 		self.timestamp = inputTimestamp
 	
+	## This function returns a new [LeaderboardEntry] object.
 	static func parse_from(dictionary: Dictionary) -> BaseSerializable.BaseDTO:
 		# Assert that the dictionary has the required properties.
 		BaseSerializable.BaseDTO.validate_properties(dictionary, [
@@ -60,6 +63,7 @@ class LeaderboardEntry extends BaseSerializable.BaseDTO:
 			dictionary["timestamp"]
 		);
 
+	## This function converts the object into a [Dictionary].
 	func values() -> Dictionary:
 		return {
 			"entry_label": self.entry_label,
